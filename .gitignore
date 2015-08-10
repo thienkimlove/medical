@@ -1,0 +1,10 @@
+.env
+.idea/
+/public/files/images/*
+!/public/files/images/thumbs.jpg
+/public/js/libs/kcfinder/upload/*
+!/public/js/libs/kcfinder/upload/images/thumbs.jpg
+!/public/js/libs/kcfinder/upload/.htaccess
+/_ide_helper.php
+/vendor/*
+/node_modules
