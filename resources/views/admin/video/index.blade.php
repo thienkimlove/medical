@@ -2,7 +2,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Video</h1>
+            <h1 class="page-header">Media</h1>
         </div>
 
     </div>
@@ -10,7 +10,7 @@
         <div class="col-lg-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                   Danh sách Video
+                   Danh sách Media
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -21,7 +21,7 @@
                                 <th>#</th>
                                 <th>Tiêu đề </th>
                                 <th>URL</th>
-                                <th>San pham</th>
+                                <th>Is Video?</th>
                                 <th>Image</th>
                                 <th>Hành động</th>
                             </tr>
@@ -31,8 +31,8 @@
                                 <tr>
                                     <td>{{$video->id}}</td>
                                     <td>{{$video->title}}</td>
-                                    <td>{{$video->file_name}}</td>
-                                    <td>{{$video->product->title}}</td>
+                                    <td>{{$video->url}}</td>
+                                    <td>{{($video->is_video) ? 'Yes' : 'No'}}</td>
                                     <td><img src="{{url('image-cached/110x70', $video->image)}}" /></td>
                                     <td>
                                         <button id-attr="{{$video->id}}" class="btn btn-primary btn-sm edit-video"  type="button">Sửa</button>

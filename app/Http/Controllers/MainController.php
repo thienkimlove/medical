@@ -19,24 +19,36 @@ use Illuminate\Support\Facades\Mail;
 class MainController extends Controller
 {
 
-    private function _prepareCategory($slug)
-    {
-        return  Category::where('slug', $slug)->first();
-    }
-
     public function index()
     {
         $page = 'index';
-        $congdung = $this->_prepareCategory('cong-dung');
-        $thongtinkhoahoc = $this->_prepareCategory('thong-tin-khoa-hoc');
-        $tintuc = $this->_prepareCategory('tin-tuc');
+
+        $videos = Video::where('is_video', true)
+            ->latest('updated_at')
+            ->limit(3)
+            ->get();
+
+        $best = Post::whereHas('modules', function($q){
+            $q->where('slug', 'best-news-trang-chu')->orderBy('order');
+        })->first();
+
+        $sound = Video::where('is_video', false)
+            ->latest('updated_at')
+            ->first();
+
+        $newestPosts = Post::where('id', $best->id)
+            ->latest('updated_at')
+            ->limit(6)
+            ->get();
+
+        $categories = Category::all();
 
         return view('frontend.index', compact(
-            'congdung', 'thongtinkhoahoc', 'tintuc', 'page'
+            'page', 'videos', 'best', 'sound', 'newestPosts', 'categories'
         ))->with([
-            'meta_title' => (!empty($settings['meta_title'])) ? $settings['meta_title'] : 'Giảo Cổ Lam',
-            'meta_desc' => (!empty($settings['meta_desc'])) ? $settings['meta_desc'] : 'Giảo Cổ Lam',
-            'meta_keywords' => (!empty($settings['meta_keywords'])) ? $settings['meta_keywords'] : 'Giảo Cổ Lam',
+            'meta_title' => (!empty($settings['meta_title'])) ? $settings['meta_title'] : 'Medical',
+            'meta_desc' => (!empty($settings['meta_desc'])) ? $settings['meta_desc'] : 'Medical',
+            'meta_keywords' => (!empty($settings['meta_keywords'])) ? $settings['meta_keywords'] : 'Medical',
         ]);
 
     }

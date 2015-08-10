@@ -43,10 +43,7 @@
                 {!! Form::textarea('desc', null, ['class' => 'form-control']) !!}
             </div>
 
-                <div class="form-group">
-                    {!! Form::label('city', 'City (dùng cho Phân phối)') !!}
-                    {!! Form::text('city', null, ['class' => 'form-control']) !!}
-                </div>
+
 
             <div class="form-group">
                 {!! Form::label('content', 'Nội dung chính') !!}

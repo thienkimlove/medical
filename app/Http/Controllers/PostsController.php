@@ -8,9 +8,7 @@ use App\Http\Requests;
 use App\Http\Requests\PostRequest;
 use App\Module;
 use App\Post;
-use App\Product;
 use App\Tag;
-use DB;
 use Illuminate\Http\Request;
 
 class PostsController extends BaseController {
@@ -22,16 +20,9 @@ class PostsController extends BaseController {
         $this->middleware('admin');
 
         $this->modules = [
-            'tin-tuc-noi-bat' => 'Hien thi tin tuc noi bat cot phai',
-            'chuyen-muc-trang-chu' => 'Hien thi o trong list tin chuyen muc trang chu'
+            'best-news-trang-chu' => 'Hiện thị trang chủ',
         ];
 
-        $products = Product::all();
-
-        foreach ($products as $product) {
-            $this->modules['thong-tin-san-pham-'. $product->id] = 'Hien thi o tin lien quan cua thong tin san pham '.$product->title;
-            $this->modules['nghien-cuu-san-pham-'. $product->id] = 'Hien thi o tin lien quan cua nghien cuu san pham '.$product->title;
-        }
 
         $categories = Category::all()->filter(function($item){
             return $item->subCategories->count() == 0;
@@ -116,7 +107,6 @@ class PostsController extends BaseController {
             'desc' => $request->input('desc'),
             'content' => $request->input('content'),
             'image' => ($request->file('image') && $request->file('image')->isValid()) ? $this->saveImage($request->file('image')) : '',
-            'city' => $request->input('city'),
             'status' => ($request->input('status') == 'on') ? true : false,
         ];
 
@@ -151,7 +141,6 @@ class PostsController extends BaseController {
             'category_id' => $request->input('category_id'),
             'desc' => $request->input('desc'),
             'content' => $request->input('content'),
-            'city' => $request->input('city'),
             'status' => ($request->input('status') == 'on') ? true : false,
         ];
         if ($request->file('image') && $request->file('image')->isValid()) {

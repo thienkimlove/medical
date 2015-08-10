@@ -3,17 +3,17 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Video</h1>
+            <h1 class="page-header">Media</h1>
         </div>
 
     </div>
     <div class="row">
         <div class="col-lg-6">
             @if (!empty($video))
-                <h2>Sửa Video "{{ $video->title }}"</h2>
+                <h2>Sửa media "{{ $video->title }}"</h2>
                 {!! Form::model($video, ['method' => 'PATCH', 'route' => ['admin.videos.update', $video->id], 'files' => true]) !!}
             @else
-                <h2>Thêm Video</h2>
+                <h2>Thêm Media</h2>
                 {!! Form::model($video = new App\Video, ['route' => ['admin.videos.store'], 'files' => true]) !!}
             @endif
 
@@ -28,28 +28,25 @@
 
 
             <div class="form-group">
-                {!! Form::label('title', 'Tiêu đề Video') !!}
+                {!! Form::label('title', 'Tiêu đề') !!}
                 {!! Form::text('title', null, ['class' => 'form-control']) !!}
             </div>
 
             <div class="form-group">
-                    {!! Form::label('file_name', 'Video URL') !!}
-                    {!! Form::text('file_name', null, ['class' => 'form-control']) !!}
+                    {!! Form::label('url', 'Media URL') !!}
+                    {!! Form::text('url', null, ['class' => 'form-control']) !!}
             </div>
 
                 <div class="form-group">
-                    {!! Form::label('desc', 'Mo ta Video') !!}
+                    {!! Form::label('desc', 'Mo ta Media') !!}
                     {!! Form::textarea('desc', null, ['class' => 'form-control']) !!}
                 </div>
 
-                <div class="form-group">
-                    {!! Form::label('product_id', 'Chọn san pham') !!}
-                    {!! Form::select('product_id', $products, null, ['class' => 'form-control']) !!}
-                </div>
+
 
                 <div class="form-group">
-                    {!! Form::label('hot', 'Hot Video') !!}
-                    {!! Form::checkbox('hot', null, null) !!}
+                    {!! Form::label('is_video', 'Is Video?') !!}
+                    {!! Form::checkbox('is_video', null, null) !!}
                 </div>
 
             <div class="form-group">

@@ -17,18 +17,12 @@ class Video extends Model implements SluggableInterface {
 
     protected $fillable = [
         'title',
-        'product_id',
         'slug',
-        'file_name',
-        'hot',
+        'url',
         'image',
-        'views',
+        'is_video',
         'desc'
     ];
 
-    public function product()
-    {
-        return $this->belongsTo('App\Product');
-    }
 
 }

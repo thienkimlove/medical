@@ -22,8 +22,7 @@ class VideoRequest extends Request {
 	{
 		return [
 			'title' => 'required',
-			'file_name' => 'required',
-			'product_id' => 'required'
+			'url' => 'required'
 		];
 	}
 

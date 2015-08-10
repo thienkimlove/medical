@@ -92,6 +92,9 @@ return array(
         '105x69' => function($image) {
             return $image->fit(105, 69);
         },
+        '320x215' => function($image) {
+            return $image->fit(320, 215);
+        },
 
     ),
 

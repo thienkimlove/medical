@@ -18,7 +18,7 @@
 
 </head>
 
-<body data-ng-controller="RootController">
+<body>
 
 <div id="wrapper">
 
@@ -38,7 +38,6 @@
 
 <script src="{{url('/js/admin.js')}}"></script>
 <script src="{{url('/js/libs/ckeditor/ckeditor.js')}}"></script>
-<script src="{{url('/js/custom.js')}}"></script>
 <script src="{{url('/js/select2.min.js')}}"></script>
 @yield('footer')
 </body>
